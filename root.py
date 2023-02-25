@@ -1,7 +1,6 @@
 from numpy import *
 from scipy.optimize import root
 from math import cos
-from math import fix
 class root():
     def eqn(x):
         return x + cos(x)
