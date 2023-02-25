@@ -1,1 +1,3 @@
-var symbols = 'A'..'Z'+'a'..'z'+'!'..'#'
+fun main(){
+  var symbols = 'A'..'Z'+'a'..'z'+'!'..'#'
+{
