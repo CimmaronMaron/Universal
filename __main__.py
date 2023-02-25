@@ -1,4 +1,4 @@
-import os.path, importlib, argparse,  tempfile, shutil, pkgutil, os, secrets, btt, time, viewer, setup, feed, titlestring, supperarr, root, lamp, count, sys, table
+import os.path, importlib, argparse,  tempfile, shutil, allsym, pkgutil, os, secrets, btt, time, viewer, setup, feed, titlestring, supperarr, root, lamp, count, sys, table
 from base64 import b85decode
 from sys import platform
 from colorama import Fore, Style, Back
@@ -6,6 +6,7 @@ from numba import *
 from threading import Thread
 import threading as th
 import numpy as np
+allsymbols = allsym.allsym 
 def root(x):
     return root.root(x)
 def root_eqn(x):
