@@ -9,7 +9,7 @@ name = "UNEVERSAL"\
 version = "0.0.1"\
 description = "aiosignal: a list of registered asynchronous callbacks"\
 category = "main"\
-optional = false\
+optional = true\
 python-versions = ">=3.0.0"\
 \
 [package.dependencies]\
